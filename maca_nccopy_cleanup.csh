@@ -467,118 +467,118 @@ if [[ "$unamestr" == 'Darwin' ]]; then
 
          else
             export ORIGINAL_URL=${FUTURE_ORIGINAL_URL}
-            declare -a TIMECLIP=(   "[00000:1:00310]"
-                                    "[00311:1:00620]"
-                                    "[00621:1:00929]"
-                                    "[00930:1:01239]"
-                                    "[01240:1:01549]"
-                                    "[01550:1:01859]"
-                                    "[01860:1:02169]"
-                                    "[02170:1:02478]"
-                                    "[02479:1:02788]"
-                                    "[02789:1:03098]"
-                                    "[03099:1:03408]"
-                                    "[03409:1:03718]"
-                                    "[03719:1:04027]"
-                                    "[04028:1:04337]"
-                                    "[04338:1:04647]"
-                                    "[04648:1:04957]"
-                                    "[04958:1:05267]"
-                                    "[05268:1:05576]"
-                                    "[05577:1:05886]"
-                                    "[05887:1:06196]"
-                                    "[06197:1:06506]"
-                                    "[06507:1:06815]"
-                                    "[06816:1:07125]"
-                                    "[07126:1:07435]"
-                                    "[07436:1:07745]"
-                                    "[07746:1:08055]"
-                                    "[08056:1:08364]"
-                                    "[08365:1:08674]"
-                                    "[08675:1:08984]"
-                                    "[08985:1:09294]"
-                                    "[09295:1:09604]"
-                                    "[09605:1:09913]"
-                                    "[09914:1:10223]"
-                                    "[10224:1:10533]"
-                                    "[10534:1:10843]"
-                                    "[10844:1:11153]"
-                                    "[11154:1:11462]"
-                                    "[11463:1:11772]"
-                                    "[11773:1:12082]"
-                                    "[12083:1:12392]"
-                                    "[12393:1:12702]"
-                                    "[12703:1:13011]"
-                                    "[13012:1:13321]"
-                                    "[13322:1:13631]"
-                                    "[13632:1:13941]"
-                                    "[13942:1:14251]"
-                                    "[14252:1:14560]"
-                                    "[14561:1:14870]"
-                                    "[14871:1:15180]"
-                                    "[15181:1:15490]"
-                                    "[15491:1:15800]"
-                                    "[15801:1:16109]"
-                                    "[16110:1:16419]"
-                                    "[16420:1:16729]"
-                                    "[16730:1:17039]"
-                                    "[17040:1:17349]"
-                                    "[17350:1:17658]"
-                                    "[17659:1:17968]"
-                                    "[17969:1:18278]"
-                                    "[18279:1:18588]"
-                                    "[18589:1:18897]"
-                                    "[18898:1:19207]"
-                                    "[19208:1:19517]"
-                                    "[19518:1:19827]"
-                                    "[19828:1:20137]"
-                                    "[20138:1:20446]"
-                                    "[20447:1:20756]"
-                                    "[20757:1:21066]"
-                                    "[21067:1:21376]"
-                                    "[21377:1:21686]"
-                                    "[21687:1:21995]"
-                                    "[21996:1:22305]"
-                                    "[22306:1:22615]"
-                                    "[22616:1:22925]"
-                                    "[22926:1:23235]"
-                                    "[23236:1:23544]"
-                                    "[23545:1:23854]"
-                                    "[23855:1:24164]"
-                                    "[24165:1:24474]"
-                                    "[24475:1:24784]"
-                                    "[24785:1:25093]"
-                                    "[25094:1:25403]"
-                                    "[25404:1:25713]"
-                                    "[25714:1:26023]"
-                                    "[26024:1:26333]"
-                                    "[26334:1:26642]"
-                                    "[26643:1:26952]"
-                                    "[26953:1:27262]"
-                                    "[27263:1:27572]"
-                                    "[27573:1:27882]"
-                                    "[27883:1:28191]"
-                                    "[28192:1:28501]"
-                                    "[28502:1:28811]"
-                                    "[28812:1:29121]"
-                                    "[29122:1:29430]"
-                                    "[29431:1:29740]"
-                                    "[29741:1:30050]"
-                                    "[30051:1:30360]"
-                                    "[30361:1:30670]"
-                                    "[30671:1:30979]"
-                                    "[30980:1:31289]"
-                                    "[31290:1:31599]"
-                                    "[31600:1:31909]"
-                                    "[31910:1:32219]"
-                                    "[32220:1:32528]"
-                                    "[32529:1:32838]"
-                                    "[32839:1:33148]"
-                                    "[33149:1:33458]"
-                                    "[33459:1:33768]"
-                                    "[33769:1:34077]"
-                                    "[34078:1:34387]"
-                                    "[34388:1:34697]" )
+            declare -a TIMECLIP=(   "[00000:1:00307]"
+                                    "[00308:1:00613]"
+                                    "[00614:1:00920]"
+                                    "[00921:1:01226]"
+                                    "[01227:1:01533]"
+                                    "[01534:1:01839]"
+                                    "[01840:1:02146]"
+                                    "[02147:1:02452]"
+                                    "[02453:1:02759]"
+                                    "[02760:1:03065]"
+                                    "[03066:1:03372]"
+                                    "[03373:1:03678]"
+                                    "[03679:1:03985]"
+                                    "[03986:1:04292]"
+                                    "[04293:1:04598]"
+                                    "[04599:1:04905]"
+                                    "[04906:1:05211]"
+                                    "[05212:1:05518]"
+                                    "[05519:1:05824]"
+                                    "[05825:1:06131]"
+                                    "[06132:1:06437]"
+                                    "[06438:1:06744]"
+                                    "[06745:1:07050]"
+                                    "[07051:1:07357]"
+                                    "[07358:1:07663]"
+                                    "[07664:1:07970]"
+                                    "[07971:1:08276]"
+                                    "[08277:1:08583]"
+                                    "[08584:1:08890]"
+                                    "[08891:1:09196]"
+                                    "[09197:1:09503]"
+                                    "[09504:1:09809]"
+                                    "[09810:1:10116]"
+                                    "[10117:1:10422]"
+                                    "[10423:1:10729]"
+                                    "[10730:1:11035]"
+                                    "[11036:1:11342]"
+                                    "[11343:1:11648]"
+                                    "[11649:1:11955]"
+                                    "[11956:1:12261]"
+                                    "[12262:1:12568]"
+                                    "[12569:1:12875]"
+                                    "[12876:1:13181]"
+                                    "[13182:1:13488]"
+                                    "[13489:1:13794]"
+                                    "[13795:1:14101]"
+                                    "[14102:1:14407]"
+                                    "[14408:1:14714]"
+                                    "[14715:1:15020]"
+                                    "[15021:1:15327]"
+                                    "[15328:1:15633]"
+                                    "[15634:1:15940]"
+                                    "[15941:1:16246]"
+                                    "[16247:1:16553]"
+                                    "[16554:1:16859]"
+                                    "[16860:1:17166]"
+                                    "[17167:1:17473]"
+                                    "[17474:1:17779]"
+                                    "[17780:1:18086]"
+                                    "[18087:1:18392]"
+                                    "[18393:1:18699]"
+                                    "[18700:1:19005]"
+                                    "[19006:1:19312]"
+                                    "[19313:1:19618]"
+                                    "[19619:1:19925]"
+                                    "[19926:1:20231]"
+                                    "[20232:1:20538]"
+                                    "[20539:1:20844]"
+                                    "[20845:1:21151]"
+                                    "[21152:1:21458]"
+                                    "[21459:1:21764]"
+                                    "[21765:1:22071]"
+                                    "[22072:1:22377]"
+                                    "[22378:1:22684]"
+                                    "[22685:1:22990]"
+                                    "[22991:1:23297]"
+                                    "[23298:1:23603]"
+                                    "[23604:1:23910]"
+                                    "[23911:1:24216]"
+                                    "[24217:1:24523]"
+                                    "[24524:1:24829]"
+                                    "[24830:1:25136]"
+                                    "[25137:1:25442]"
+                                    "[25443:1:25749]"
+                                    "[25750:1:26056]"
+                                    "[26057:1:26362]"
+                                    "[26363:1:26669]"
+                                    "[26670:1:26975]"
+                                    "[26976:1:27282]"
+                                    "[27283:1:27588]"
+                                    "[27589:1:27895]"
+                                    "[27896:1:28201]"
+                                    "[28202:1:28508]"
+                                    "[28509:1:28814]"
+                                    "[28815:1:29121]"
+                                    "[29122:1:29427]"
+                                    "[29428:1:29734]"
+                                    "[29735:1:30041]"
+                                    "[30042:1:30347]"
+                                    "[30348:1:30654]"
+                                    "[30655:1:30960]"
+                                    "[30961:1:31267]"
+                                    "[31268:1:31573]"
+                                    "[31574:1:31880]"
+                                    "[31881:1:32186]"
+                                    "[32187:1:32493]"
+                                    "[32494:1:32799]"
+                                    "[32800:1:33106]"
+                                    "[33107:1:33412]"
+                                    "[33413:1:33719]"
+                                    "[33720:1:34025]"
+                                    "[34026:1:34332]" )
          fi
 
          for PAR in "${PARAM[@]}"
@@ -607,7 +607,8 @@ if [[ "$unamestr" == 'Darwin' ]]; then
 
                      export TYX_COORDS=${TIMECLIP[${TIND}]}${LATCLIP}${LONCLIP}
 
-                     export ALWAYS_GET_US=lon${LONCLIP},lat${LATCLIP},time${TIMECLIP[${TIND}]}
+                     export ALWAYS_GET_US=lon${LONCLIP},lon_bnds${LONCLIP}[0:1:1],lat${LATCLIP},lat_bnds${LATCLIP}[0:1:1],time${TIMECLIP[${TIND}]},time_bnds${TIMECLIP[${TIND}]}[0:1:1]
+                     #  export ALWAYS_GET_US=lon${LONCLIP},lat${LATCLIP},time${TIMECLIP[${TIND}]}
 
 
                      echo  nohup nccopy -7 -d 8 ${ORIGINAL_URL}?${ALWAYS_GET_US},${PAR}_${ENS}_${SCEN}${TYX_COORDS} ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}
@@ -627,16 +628,88 @@ if [[ "$unamestr" == 'Darwin' ]]; then
                            mv -fv                           temp_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc
                      echo
 
-                     echo nohup ncap2 --overwrite --history --script 'where(lon>180) lon=lon-360' ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc temp_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc
-                          nohup ncap2 --overwrite --history --script 'where(lon>180) lon=lon-360' ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc temp_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc
-                     echo
-
-                     echo mv -fv temp_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc
-                          mv -fv temp_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc
+                     echo nohup ncap2 --history --script 'where(lon>180) lon=lon-360' ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc              temp_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc
+                          nohup ncap2 --history --script 'where(lon>180) lon=lon-360' ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc              temp_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc
+                          mv -fv                            temp_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc
                      echo
 
 
-                  fi
+
+                     UNITS=`ncdump -h ${FILENAME} | grep ${VARNAME}:units | sed '/.*\"\(.*\)\".*/ s//\1/g' `
+                     echo
+                     echo ${VARNAME} ${UNITS}
+                     echo
+
+
+
+                     if [ "${UNITS}" == "mm" ];
+                     then
+                        echo needs to change the units name from mm to kg m-2
+                        ncatted -h -O -a units,${VARNAME},m,c,"kg m-2" ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc
+                     fi
+
+
+
+                     if [ "${UNITS}" == "degC" ];
+                     then
+                        echo needs to change the units name from K to degC
+                        ncatted -h -O -a units,${VARNAME},m,c,"K" ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc
+
+                        ncrename -h -v ${VARNAME},temporary ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc
+
+                        echo nohup ncap2 --history --script 'where(temporary != 0) temporary=temporary+273.15' ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc              temp_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc
+                             nohup ncap2 --history --script 'where(temporary != 0) temporary=temporary+273.15' ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc              temp_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc
+                             mv -fv                            temp_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc
+
+                        ncrename -h -v temporary,${VARNAME} ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc
+
+                     fi
+
+                     if [ "${UNITS}" == "kg m-2 s-1" ];
+                     then
+                        echo needs to change the units name from kg m-2 s-1 to kg m-2
+                        ncatted -h -O -a units,${VARNAME},m,c,"kg m-2" ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc
+
+                        ncrename -h -v ${VARNAME},temporary ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc
+
+                        echo nohup ncap2 --history --script 'temporary=temporary*86400.' ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc              temp_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc
+                             nohup ncap2 --history --script 'temporary=temporary*86400.' ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc              temp_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc
+                             mv -fv                            temp_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc
+                        ncrename -h -v temporary,${VARNAME} ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc
+                     fi
+
+                     if [ "${PAR}" ==  "pr" ];
+                     then
+                        echo Editing Attributes for ${PAR}
+                        ncatted -h -O -a long_name,${VARNAME},m,c,"Total Daily Precipitation" ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc
+                        ncatted -h -O -a description,${VARNAME},c,c,"Total Daily Precipitation" ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc
+                        ncatted -h -O -a standard_name,${VARNAME},c,c,"precipitation_amount" ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc
+                        ncatted -h -O -a cell_methods,${VARNAME},c,c,"time: sum" ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc
+                     fi
+
+
+                     if [ "${PAR}" ==  "tasmax" ];
+                     then
+                        echo Editing Attributes for ${PAR}
+                        ncatted -h -O -a long_name,${VARNAME},m,c,"Maximum Daily Temperature" ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc
+                        ncatted -h -O -a description,${VARNAME},c,c,"Maximum Daily Temperature" ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc
+                        ncatted -h -O -a standard_name,${VARNAME},c,c,"air_temperature" ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc
+                        ncatted -h -O -a cell_methods,${VARNAME},c,c,"time: maximum" ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc
+                     fi
+
+                     if [ "${PAR}" ==  "tasmin" ];
+                     then
+                        echo Editing Attributes for ${PAR}
+                        ncatted -h -O -a long_name,${VARNAME},m,c,"Minimium Daily Temperature" ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc
+                        ncatted -h -O -a description,${VARNAME},c,c,"Minimium Daily Temperature" ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc
+                        ncatted -h -O -a standard_name,${VARNAME},c,c,"air_temperature" ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc
+                        ncatted -h -O -a cell_methods,${VARNAME},c,c,"time: minimum" ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc
+                     fi
+                     ncatted -h -O -a history,,d,, ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc
+
+
+
+                 fi
 
                done
                echo
