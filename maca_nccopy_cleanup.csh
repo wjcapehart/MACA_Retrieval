@@ -29,9 +29,13 @@ if [[ "$unamestr" == 'Darwin' ]]; then
    #
    ##################
 
+   #MACA CLIP Points (SODAK)
    export LONCLIP="[445:1:705]"
    export LATCLIP="[412:1:510]"
 
+   #LOCA CLIP Points (SODAK)
+   # export LONCLIP="[316:1:489]"
+   # export LATCLIP="[302:1:366]"
 
    export NCCOPY="nccopy"
 
@@ -322,11 +326,11 @@ if [[ "$unamestr" == 'Darwin' ]]; then
                           )
 
 
-   declare -a    PARAM=(   "pr"
-                           "tasmax"
-                           "tasmin"
-                           "huss"
-                         )
+   #declare -a    PARAM=(   "pr"
+   #                           "tasmax"
+   #                        "tasmin"
+   #                        "huss"
+   #                      )
 
 
     declare -a SCENARIO=(  "historical"
@@ -607,7 +611,7 @@ if [[ "$unamestr" == 'Darwin' ]]; then
 
                      export TYX_COORDS=${TIMECLIP[${TIND}]}${LATCLIP}${LONCLIP}
 
-                     export ALWAYS_GET_US=lon${LONCLIP},lon_bnds${LONCLIP}[0:1:1],lat${LATCLIP},lat_bnds${LATCLIP}[0:1:1],time${TIMECLIP[${TIND}]},time_bnds${TIMECLIP[${TIND}]}[0:1:1]
+                     export ALWAYS_GET_US=lon${LONCLIP},lat${LATCLIP},time${TIMECLIP[${TIND}]}
                      #  export ALWAYS_GET_US=lon${LONCLIP},lat${LATCLIP},time${TIMECLIP[${TIND}]}
 
 
@@ -628,10 +632,10 @@ if [[ "$unamestr" == 'Darwin' ]]; then
                            mv -fv                           temp_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc
                      echo
 
-                     echo nohup ncap2 --history --script 'where(lon>180) lon=lon-360' ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc              temp_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc
-                          nohup ncap2 --history --script 'where(lon>180) lon=lon-360' ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc              temp_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc
-                          mv -fv                            temp_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc
-                     echo
+                     #echo nohup ncap2 --history --script 'where(lon>180) lon=lon-360' ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc              temp_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc
+                     #     nohup ncap2 --history --script 'where(lon>180) lon=lon-360' ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc              temp_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc
+                  #        mv -fv                            temp_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc
+                     #echo
 
 
 
