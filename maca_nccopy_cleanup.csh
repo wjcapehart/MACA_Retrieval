@@ -1,19 +1,16 @@
 #!/bin/bash
 
 
+hostname=`hostname`
 
 unamestr=`uname`
-if [[ "$unamestr" == 'Darwin' ]]; then
+if [[ "$unamestr" == 'Darwin' ] || [ "$hostname" == 'sundog.ias.sdsmt.edu' ]]; then
    export NCARG_ROOT=/usr/local/ncl-6.4.0
    export NCARG_RANGS=/usr/local/rangs
    export DYLD_FALLBACK_LIBRARY_PATH=/usr/local/Cellar/gcc/7.3.0/lib/gcc/7/:$DYLD_FALLBACK_LIBRARY_PATH
    export PATH=$NCARG_ROOT/bin:"$PATH"
 
 
-   ### Environment for Local use on Kyrill file syetem.
-
-   export CASE="HISTORICAL"
-   # export CASE="FUTURE"
 
    # South Dakota with full Cheyenne Basin and Big Sioux Basin
 
