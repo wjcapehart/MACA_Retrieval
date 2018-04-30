@@ -11,6 +11,10 @@ if [ "$unamestr" == 'Darwin' ] || [ "$hostname" == 'sundog.ias.sdsmt.edu' ]; the
    export DYLD_FALLBACK_LIBRARY_PATH=/usr/local/Cellar/gcc/7.3.0/lib/gcc/7/:$DYLD_FALLBACK_LIBRARY_PATH
    export PATH=$NCARG_ROOT/bin:"$PATH"
 
+   export NCCOPY=/usr/local/bin/nccopy
+
+
+
 
 
    # South Dakota with full Cheyenne Basin and Big Sioux Basin
@@ -35,7 +39,6 @@ if [ "$unamestr" == 'Darwin' ] || [ "$hostname" == 'sundog.ias.sdsmt.edu' ]; the
    # export LONCLIP="[316:1:489]"
    # export LATCLIP="[302:1:366]"
 
-   export NCCOPY="nccopy"
 
    # CIDA THREDDS Address for both Historical and Future Scenarios
 
@@ -613,8 +616,8 @@ if [ "$unamestr" == 'Darwin' ] || [ "$hostname" == 'sundog.ias.sdsmt.edu' ]; the
                      #  export ALWAYS_GET_US=lon${LONCLIP},lat${LATCLIP},time${TIMECLIP[${TIND}]}
 
 
-                     echo  nohup nccopy -7 -d 8 ${ORIGINAL_URL}?${ALWAYS_GET_US},${PAR}_${ENS}_${SCEN}${TYX_COORDS} ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}
-                           nohup nccopy -7 -d 8 ${ORIGINAL_URL}?${ALWAYS_GET_US},${PAR}_${ENS}_${SCEN}${TYX_COORDS} ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}
+                     echo  nohup ${NCCOPY} -7 -d 8 ${ORIGINAL_URL}?${ALWAYS_GET_US},${PAR}_${ENS}_${SCEN}${TYX_COORDS} ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}
+                           nohup ${NCCOPY} -7 -d 8 ${ORIGINAL_URL}?${ALWAYS_GET_US},${PAR}_${ENS}_${SCEN}${TYX_COORDS} ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}
                      echo
 
                      echo nohup ncks -h --mk_rec_dmn time  ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]} ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc
