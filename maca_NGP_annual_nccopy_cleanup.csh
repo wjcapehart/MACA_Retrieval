@@ -4,7 +4,7 @@
 OS_NAME=`uname`
 HOST_NAME=`hostname`
 
-TEST_STRING=`nccopy https://cida.usgs.gov/thredds/dodsC/loca_future?lat[0:1:489] deleteme.nc`
+TEST_STRING=`nccopy https://cida.usgs.gov/thredds/dodsC/macav2metdata_daily_future?lat[214:1:584] deleteme.nc`
 
 echo ****************
 echo ** Test String ||$TEST_STRING|| **
@@ -50,8 +50,9 @@ then
 
    # Setting Local Points to Revieved Clipped Data
 
-   export CLIPPED_PREFIX="/squall2/MACAscratch/grid"
+   export CLIPPED_WORKDIR="/squall2/MACAscratch/grid"
    mkdir -vp ${CLIPPED_WORKDIR}
+   export CLIPPED_PREFIX=${CLIPPED_WORKDIR}"/NGP_MACA"
 
 
    ### NGP
@@ -140,7 +141,15 @@ then
     declare -a PASSES=(  "1"
                          "2"
                          "3"
-                         "4" )
+                         "4"
+
+    PASS=${PASSES[0]}
+    PAR=${PARAM[0]}
+    SCEN=${SCENARIO[0]}
+    ENS=${ENSEMBLE[0]}
+
+    echo ${PASS} ${PAR}_${ENS}_${SCEN}
+
 
    for PASS in  "${PASSES[@]}"
    do
@@ -643,7 +652,6 @@ then
                   export FILENAME=${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc
                   export  VARNAME=${PAR}_${ENS}_${SCEN}
 
-                  mkdir -pv /projects/ECEP/LOCA_MACA_Ensembles/LOCA/LOCA_OUTPUT/graphics/${VARNAME}
 
                   ncl -Q -n file_name='"'${FILENAME}'"' variable_name='"'${VARNAME}'"'  vartype='"'${PAR}'"' macaloca_scan_and_check.ncl
 
@@ -653,7 +661,7 @@ then
 
                      export TYX_COORDS=${TIMECLIP[${TIND}]}${LATCLIP}${LONCLIP}
 
-                     export ALWAYS_GET_US=lon${LONCLIP},lon_bnds${LONCLIP}[0:1:1],lat${LATCLIP},lat_bnds${LATCLIP}[0:1:1],time${TIMECLIP[${TIND}]},time_bnds${TIMECLIP[${TIND}]}[0:1:1]
+                     export ALWAYS_GET_US=lon${LONCLIP},lat${LATCLIP},time${TIMECLIP[${TIND}]},crs
                      #  export ALWAYS_GET_US=lon${LONCLIP},lat${LATCLIP},time${TIMECLIP[${TIND}]}
 
                      rm  nccopy.log
@@ -728,12 +736,12 @@ then
                              ncatted -h -O -a missing_value,${VARNAME},d,,    ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc
                              ncatted -h -O -a missing_value,${VARNAME},c,s,-32767        ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc
 
-                        echo
-                        echo Applying Mask
-                        echo
-                        echo cdo div  ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc ./mask.nc  ./masked.nc
-                             cdo div  ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc ./mask.nc  ./masked.nc
-                        mv -v  ./masked.nc ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc
+                        #echo
+                        #echo Applying Mask
+                        #echo
+                        #echo cdo div  ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc ./mask.nc  ./masked.nc
+                        #     cdo div  ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc ./mask.nc  ./masked.nc
+                        #mv -v  ./masked.nc ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc
 
 
                         # echo
