@@ -622,6 +622,8 @@ then
 
          fi
 
+         declare -a TIND_VALS=(  0 )
+
          echo ${TIND_VALS}
          for PAR in "${PARAM[@]}"
          do
@@ -632,6 +634,8 @@ then
                echo
                echo Processing ${PAR}_${ENS}_${SCEN}
                echo
+
+######               for TIND in "${TIND_VALS[@]}"
 
                for TIND in "${TIND_VALS[@]}"
                do
