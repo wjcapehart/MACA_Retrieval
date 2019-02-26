@@ -631,8 +631,6 @@ then
 
          fi
 
-         declare -a TIND_VALS=(  0 )
-
          echo ${TIND_VALS}
          for PAR in "${PARAM[@]}"
          do
