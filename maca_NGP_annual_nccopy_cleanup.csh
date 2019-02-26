@@ -781,7 +781,14 @@ then
                            echo
 
 
-
+                           if [ "${PAR}" ==  "pr" ];
+                           then
+                              echo Editing Attributes for ${PAR}
+                              ncatted -h -O -a long_name,${VARNAME},m,c,"Total Daily Precipitation"   ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc
+                              ncatted -h -O -a description,${VARNAME},c,c,"Total Daily Precipitation" ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc
+                              ncatted -h -O -a standard_name,${VARNAME},c,c,"precipitation_amount"    ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc
+                              ncatted -h -O -a units,${VARNAME},c,c,"kg m-1"    ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc
+                            fi
 
 
                            # Get rid of the mess in the global Attributes
