@@ -165,7 +165,7 @@ then
          then
             export ORIGINAL_URL=${HISTORICAL_ORIGINAL_URL}
 
-            export TIND_VALS=(  0
+            declare -a TIND_VALS=(  0
                                     1
                                     2
                                     3
