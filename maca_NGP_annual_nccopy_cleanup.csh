@@ -141,7 +141,7 @@ then
     declare -a PASSES=(  "1"
                          "2"
                          "3"
-                         "4"
+                         "4" )
 
     PASS=${PASSES[0]}
     PAR=${PARAM[0]}
@@ -220,7 +220,7 @@ then
                                     52
                                     53
                                     54
-                                    55 ) 
+                                    55 )
 
          declare -a TIMECLIPCODE=(   __T1950
                                      __T1951
