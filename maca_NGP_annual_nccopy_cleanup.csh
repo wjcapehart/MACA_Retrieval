@@ -220,7 +220,7 @@ then
                                     52
                                     53
                                     54
-                                    55 )
+                                    55 ) 
 
          declare -a TIMECLIPCODE=(   __T1950
                                      __T1951
