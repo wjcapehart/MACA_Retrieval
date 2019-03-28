@@ -673,8 +673,8 @@ then
 
                      echo  Downloading File from USGS THREDDS Server
                      echo
-                     echo        nccopy -7 -d 8 ${ORIGINAL_URL}?${ALWAYS_GET_US},${PAR}_${ENS}_${SCEN}${TYX_COORDS} ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]} 
-                           nohup nccopy -7 -d 8 ${ORIGINAL_URL}?${ALWAYS_GET_US},${PAR}_${ENS}_${SCEN}${TYX_COORDS} ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]} >& ./nccopy.log
+                     echo        /usr/local/bin/nccopy -7 -d 8 ${ORIGINAL_URL}?${ALWAYS_GET_US},${PAR}_${ENS}_${SCEN}${TYX_COORDS} ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]} 
+                           nohup /usr/local/bin/nccopy -7 -d 8 ${ORIGINAL_URL}?${ALWAYS_GET_US},${PAR}_${ENS}_${SCEN}${TYX_COORDS} ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]} >& ./nccopy.log
 
                      if (  grep -iFq "CURL" ./nccopy.log )
                      then
