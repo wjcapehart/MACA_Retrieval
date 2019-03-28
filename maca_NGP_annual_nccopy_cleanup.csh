@@ -21,7 +21,20 @@ then
   rm -frv deleteme.nc
   echo Working on ${HOST_NAME} using ${OS_NAME}
 
-   declare -a    PARAM=(  "pr"         "tasmin" "tasmax" )
+      # setting the available variables
+
+      declare -a    PARAM=(  "pr"
+                             "tasmax"
+                             "tasmin"
+                             "huss"
+                             "rhsmax"
+                             "rhsmin"
+                             "rsds"
+                             "uas"
+                             "vas"
+                             )
+
+
    declare -a SCENARIO=(  "historical" "rcp85"  "rcp45"  )
 
 
@@ -126,19 +139,6 @@ then
                               "inmcm4_r1i1p1"
                            )
 
-      # setting the available variables
-
-      declare -a    PARAM=(
-                             "pr"
-                             "tasmax"
-                             "tasmin"
-                             "huss"
-                             "rhsmax"
-                             "rhsmin"
-                             "rsds"
-                             "uas"
-                             "vas"
-                             )
 
 
    # setting the available variables
@@ -647,7 +647,7 @@ then
                echo Processing ${PAR}_${ENS}_${SCEN}
                echo
 
-######               for TIND in "${TIND_VALS[@]}"
+               ######               for TIND in "${TIND_VALS[@]}"
 
                for TIND in "${TIND_VALS[@]}"
                do
@@ -671,7 +671,7 @@ then
 
                      echo  Downloading File from USGS THREDDS Server
                      echo
-                     echo  nohup nccopy -7 -d 8 ${ORIGINAL_URL}?${ALWAYS_GET_US},${PAR}_${ENS}_${SCEN}${TYX_COORDS} ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]} >& ./nccopy.log
+                     echo        nccopy -7 -d 8 ${ORIGINAL_URL}?${ALWAYS_GET_US},${PAR}_${ENS}_${SCEN}${TYX_COORDS} ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]} >& ./nccopy.log
                            nohup nccopy -7 -d 8 ${ORIGINAL_URL}?${ALWAYS_GET_US},${PAR}_${ENS}_${SCEN}${TYX_COORDS} ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]} >& ./nccopy.log
 
                      if (  grep -iFq "CURL" ./nccopy.log )
@@ -697,7 +697,7 @@ then
                         echo
                         echo Converting Time to the Record Variable
                         echo
-                        echo nohup ncks -h --mk_rec_dmn time  ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]} ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc
+                        echo       ncks -h --mk_rec_dmn time  ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]} ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc
                              nohup ncks -h --mk_rec_dmn time  ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]} ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc
                                    rm -frv                    ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}
 
@@ -710,17 +710,17 @@ then
                         echo
                         echo Unpack File -- it will be uniformly packed later for all variables
                         echo
-                        echo  nohup ncpdq -h -U   ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc              temp_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc
+                        echo        ncpdq -h -U   ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc              temp_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc
                               nohup ncpdq -h -U   ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc              temp_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc
                               mv -fv                           temp_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc
 
                         echo
                         echo Destroy any previous unpacking unformation
                         echo
-                        echo  nohup ncatted -h -O -a add_offset,,d,,   ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc              temp_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc
+                        echo        ncatted -h -O -a add_offset,,d,,   ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc              temp_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc
                               nohup ncatted -h -O -a add_offset,,d,,   ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc              temp_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc
                               mv -fv                                                temp_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc
-                        echo  nohup ncatted -h -O -a scale_factor,,d,, ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc              temp_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc
+                        echo        ncatted -h -O -a scale_factor,,d,, ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc              temp_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc
                               nohup ncatted -h -O -a scale_factor,,d,, ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc              temp_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc
                               mv -fv                                                temp_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc
 
