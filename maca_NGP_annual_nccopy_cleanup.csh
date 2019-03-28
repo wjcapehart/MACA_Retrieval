@@ -34,7 +34,6 @@ then
                              "vas"
                              )
 
-      declare -a    PARAM=(  "tasmax" )
 
    declare -a SCENARIO=(  "historical" "rcp85"  "rcp45"  )
    declare -a SCENARIO=(  "historical" )
@@ -42,18 +41,21 @@ then
 
    ### NCL COMMANDS TO FETCH GRIDCELLS BY LAT/LON
    #
-   #    max_lat =  49.39602279663086; degrees north
-   #    min_lat =  34.00 ; degrees north
-   #    min_lon = -114.25  ; degrees east
-   #    max_lon =  -86.25 ; degrees east
-
+   #    min_lat =   42.00; degrees north
+   #    max_lat =   45.80; degrees north
+   #    min_lon = -106.50 ; degrees east
+   #    max_lon = -101.00 ; degrees east
+   #   
+   #   print(  lon( {min_lon:max_lon}  )   )
+   #   print(  lat( {min_lat:max_lat}  )   )#
+   #
    #   deg_target = lon({max_lon})
    #   index_xx = ind(lon .eq. lon({max_lon}))
    #   index_xn = ind(lon .eq. lon({min_lon}))
    #   index_yx = ind(lat .eq. lat({max_lat}))
    #   index_yn = ind(lat .eq. lat({min_lat}))
-   #   print("LONCLIP=  [" +  (index_xn) + ":1:" + (index_xx) + "] [" +  (lon(index_xn)) + ":1:" + (lon(index_xx)) + "]")
-   #    print("LATCLIP=  [" +  (index_yn) + ":1:" + (index_yx) + "] [" +  lat(index_yn) + ":1:" + lat(index_yx) + "]")
+   #   print("export LONCLIP=  [" +  (index_xn) + ":1:" + (index_xx) + "] # [" +  (lon(index_xn)) + ":1:" + (lon(index_xx)) + "]")
+   #   print("export LATCLIP=  [" +  (index_yn) + ":1:" + (index_yx) + "] # [" +  lat(index_yn) + ":1:" + lat(index_yx) + "]")
    #
    #
    ##################
@@ -65,9 +67,9 @@ then
 
    # Setting Local Points to Revieved Clipped Data
 
-   export CLIPPED_WORKDIR="/squall2/MACAscratch/grid_mrb"
+   export CLIPPED_WORKDIR="/squall2/MACAscratch/grid_crb"
    mkdir -vp ${CLIPPED_WORKDIR}
-   export CLIPPED_PREFIX=${CLIPPED_WORKDIR}"/MRB_MACA"
+   export CLIPPED_PREFIX=${CLIPPED_WORKDIR}"/CHEYENNE_MACA"
 
 
    ### NGP
@@ -78,6 +80,11 @@ then
    ### MRB 
    export LONCLIP="[256:1:841]" # [-114.105667114258:1:-89.7310485839844]
    export LATCLIP="[278:1:584]" # [36.64622497558594:1:49.39602279663086]"  
+   
+      
+   ### CRB 
+   export LONCLIP="[439:1:571]" # [-106.48078918457:1:-100.980895996094]
+   export LATCLIP="[406:1:498]" # [41.97947311401367:1:45.81274795532227] 
 
    export NCCOPY="nccopy"
 
