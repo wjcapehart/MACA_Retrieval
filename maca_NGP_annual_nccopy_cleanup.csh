@@ -34,8 +34,10 @@ then
                              "vas"
                              )
 
+      declare -a    PARAM=(  "tasmax" )
 
    declare -a SCENARIO=(  "historical" "rcp85"  "rcp45"  )
+   declare -a SCENARIO=(  "historical" )
 
 
    ### NCL COMMANDS TO FETCH GRIDCELLS BY LAT/LON
