@@ -36,7 +36,6 @@ then
 
 
    declare -a SCENARIO=(  "historical" "rcp85"  "rcp45"  )
-   declare -a SCENARIO=(  "historical" )
 
 
    ### NCL COMMANDS TO FETCH GRIDCELLS BY LAT/LON
@@ -45,7 +44,7 @@ then
    #    max_lat =   45.80; degrees north
    #    min_lon = -106.50 ; degrees east
    #    max_lon = -101.00 ; degrees east
-   #   
+   #
    #   print(  lon( {min_lon:max_lon}  )   )
    #   print(  lat( {min_lat:max_lat}  )   )#
    #
@@ -75,16 +74,16 @@ then
    ### NGP
    export LONCLIP="[253:1:925]"  # [-114.230667114258 : 1 : -86.2311096191406]
    export LATCLIP="[214:1:584]"  # [ 33.9796028137207 : 1 : 49.39602279663086]
-   
-   
-   ### MRB 
+
+
+   ### MRB
    export LONCLIP="[256:1:841]" # [-114.105667114258:1:-89.7310485839844]
-   export LATCLIP="[278:1:584]" # [36.64622497558594:1:49.39602279663086]"  
-   
-      
-   ### CRB 
+   export LATCLIP="[278:1:584]" # [36.64622497558594:1:49.39602279663086]"
+
+
+   ### CRB
    export LONCLIP="[439:1:571]" # [-106.48078918457:1:-100.980895996094]
-   export LATCLIP="[406:1:498]" # [41.97947311401367:1:45.81274795532227] 
+   export LATCLIP="[406:1:498]" # [41.97947311401367:1:45.81274795532227]
 
    export NCCOPY="nccopy"
 
@@ -147,7 +146,6 @@ then
                               "bcc-csm1-1_r1i1p1"
                               "inmcm4_r1i1p1"
                            )
-
 
 
    # setting the available variables
@@ -680,7 +678,7 @@ then
 
                      echo  Downloading File from USGS THREDDS Server
                      echo
-                     echo        /usr/local/bin/nccopy -7 -d 8 ${ORIGINAL_URL}?${ALWAYS_GET_US},${PAR}_${ENS}_${SCEN}${TYX_COORDS} ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]} 
+                     echo        /usr/local/bin/nccopy -7 -d 8 ${ORIGINAL_URL}?${ALWAYS_GET_US},${PAR}_${ENS}_${SCEN}${TYX_COORDS} ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}
                            nohup /usr/local/bin/nccopy -7 -d 8 ${ORIGINAL_URL}?${ALWAYS_GET_US},${PAR}_${ENS}_${SCEN}${TYX_COORDS} ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]} >& ./nccopy.log
 
                      if (  grep -iFq "CURL" ./nccopy.log )
@@ -774,7 +772,7 @@ then
                         echo
                         echo Preparing Compression for ${PAR}_${ENS}_${SCEN}
                         echo
-                        
+
                            if [ "${PAR}" ==  "huss" ];
                            then
                               ncrename -h -v ${VARNAME},temporary ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc
@@ -784,8 +782,8 @@ then
                                    ncap2 --history --deflate 8 --script 'temporary=short(round(temporary*100000.))' ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}_short.nc
                               mv -v ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}_short.nc ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc
                               echo
-                              echo ncap2 --history --deflate 8 --script 'where(temporary < 0) temporary=short(-32767)' ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}_fill.nc
-                                   ncap2 --history --deflate 8 --script 'where(temporary < 0) temporary=short(-32767)' ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}_fill.nc
+                              echo ncap2 --history --deflate 8 --script 'where(temporary == -9999) temporary=short(-32767)' ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}_fill.nc
+                                   ncap2 --history --deflate 8 --script 'where(temporary == -9999) temporary=short(-32767)' ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}_fill.nc
                               mv -v ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}_fill.nc ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc
                               echo
                               echo ncrename -h -v temporary,${VARNAME} ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc
@@ -804,8 +802,8 @@ then
                                    ncap2 --history --deflate 8 --script 'temporary=short(round(temporary*10))' ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}_short.nc
                               mv -v ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}_short.nc ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc
                               echo
-                              echo ncap2 --history --deflate 8 --script 'where(temporary < 0) temporary=short(-32767)' ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}_fill.nc
-                                   ncap2 --history --deflate 8 --script 'where(temporary < 0) temporary=short(-32767)' ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}_fill.nc
+                              echo ncap2 --history --deflate 8 --script 'where(temporary == -9999) temporary=short(-32767)' ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}_fill.nc
+                                   ncap2 --history --deflate 8 --script 'where(temporary == -9999) temporary=short(-32767)' ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}_fill.nc
                               mv -v ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}_fill.nc ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc
                               echo
                               echo ncrename -h -v temporary,${VARNAME} ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc
