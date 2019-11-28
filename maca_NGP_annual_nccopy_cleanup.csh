@@ -50,14 +50,24 @@ then
 
    # Setting Local Points to Revieved Clipped Data
 
-   export CLIPPED_WORKDIR="/squall2/MACAscratch/grid"
+   export CLIPPED_WORKDIR="/squall2/MACAscratch/grid_crb"
    mkdir -vp ${CLIPPED_WORKDIR}
-   export CLIPPED_PREFIX=${CLIPPED_WORKDIR}"/NGP_MACA"
+   export CLIPPED_PREFIX=${CLIPPED_WORKDIR}"/CHEYENNE_MACA"
 
 
    ### NGP
    export LONCLIP="[253:1:925]"  # [-114.230667114258 : 1 : -86.2311096191406]
    export LATCLIP="[214:1:584]"  # [ 33.9796028137207 : 1 : 49.39602279663086]
+
+
+   ### MRB
+   export LONCLIP="[256:1:841]" # [-114.105667114258:1:-89.7310485839844]
+   export LATCLIP="[278:1:584]" # [36.64622497558594:1:49.39602279663086]"
+
+
+   ### CRB
+   export LONCLIP="[439:1:571]" # [-106.48078918457:1:-100.980895996094]
+   export LATCLIP="[406:1:498]" # [41.97947311401367:1:45.81274795532227]
 
    export NCCOPY="nccopy"
 
@@ -98,28 +108,21 @@ then
    #   for all three variables!
 
 
-      declare -a ENSEMBLE=(
-                              "BNU-ESM_r1i1p1"
-                              "CCSM4_r6i1p1"
-                              "CNRM-CM5_r1i1p1"
-                              "CSIRO-Mk3-6-0_r1i1p1"
-                              "CanESM2_r1i1p1"
-                              "GFDL-ESM2G_r1i1p1"
-                              "GFDL-ESM2M_r1i1p1"
-                              "HadGEM2-CC365_r1i1p1"
-                              "HadGEM2-ES365_r1i1p1"
-                              "IPSL-CM5A-LR_r1i1p1"
-                              "IPSL-CM5A-MR_r1i1p1"
-                              "IPSL-CM5B-LR_r1i1p1"
-                              "MIROC-ESM_r1i1p1"
-                              "MIROC-ESM-CHEM_r1i1p1"
-                              "MIROC5_r1i1p1"
-                              "MRI-CGCM3_r1i1p1"
-                              "NorESM1-M_r1i1p1"
-                              "bcc-csm1-1-m_r1i1p1"
-                              "bcc-csm1-1_r1i1p1"
-                              "inmcm4_r1i1p1"
-                           )
+      declare -a ENSEMBLE=( 'bcc-csm1-1_r1i1p1'
+                            'bcc-csm1-1-m_r1i1p1'
+                            'BNU-ESM_r1i1p1'
+                            'CanESM2_r1i1p1'
+                            'CNRM-CM5_r1i1p1'
+                            'CSIRO-Mk3-6-0_r1i1p1'
+                            'GFDL-ESM2G_r1i1p1'
+                            'HadGEM2-CC365_r1i1p1'
+                            'HadGEM2-ES365_r1i1p1'
+                            'inmcm4_r1i1p1'
+                            'IPSL-CM5A-LR_r1i1p1'
+                            'IPSL-CM5B-LR_r1i1p1'
+                            'MIROC-ESM-CHEM_r1i1p1'
+                            'MIROC5_r1i1p1'
+                            'MRI-CGCM3_r1i1p1')
 
       # setting the available variables
 

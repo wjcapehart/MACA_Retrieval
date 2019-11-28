@@ -144,3 +144,19 @@ ncpdq: ERROR file /projects/ECEP/LOCA_MACA_Ensembles/MACA/MACA_OUTPUT/grid/SODAK
 ncpdq: HINT file-not-found errors usually arise from filename typos, incorrect paths, missing files, or capricious gods. Please verify spelling and location of requested file.
 ncap2: ERROR file /projects/ECEP/LOCA_MACA_Ensembles/MACA/MACA_OUTPUT/grid/SODAK_MACA_pr_BNU-ESM_r1i1p1_historical___T009.nc not found. It does not exist on the local filesystem, nor does it match remote filename patterns (e.g., http://foo or foo.bar.edu:file), nor did NCO detect a remote High Performance Storage System (HPSS) accessible via the 'hsi' command.
 ncap2: HINT file-not-found errors usually arise from filename typos, incorrect paths, missing files, or capricious gods. Please verify spelling and location of requested file.
+nco_err_exit(): ERROR Short NCO-generated message (usually name of function that triggered error): nco__create()
+nco_err_exit(): ERROR Error code is 13. Translation into English with nc_strerror(13) is "Permission denied"
+ERROR: nco__create() unable to create file "/projects/ECEP/LOCA_MACA_Ensembles/MACA/MACA_CHEYENNE/historical/pr/CHEYENNE_LOCA_pr_BNU-ESM_r1i1p1_historical.nc.pid52091.ncrcat.tmp"
+nco_err_exit(): ERROR NCO will now exit with system call exit(EXIT_FAILURE)
+nco_err_exit(): ERROR Short NCO-generated message (usually name of function that triggered error): nco__create()
+nco_err_exit(): ERROR Error code is 13. Translation into English with nc_strerror(13) is "Permission denied"
+ERROR: nco__create() unable to create file "/projects/ECEP/LOCA_MACA_Ensembles/MACA/MACA_CHEYENNE/historical/tasmax/CHEYENNE_LOCA_tasmax_BNU-ESM_r1i1p1_historical.nc.pid52093.ncrcat.tmp"
+nco_err_exit(): ERROR NCO will now exit with system call exit(EXIT_FAILURE)
+nco_err_exit(): ERROR Short NCO-generated message (usually name of function that triggered error): nco__create()
+nco_err_exit(): ERROR Error code is 13. Translation into English with nc_strerror(13) is "Permission denied"
+ERROR: nco__create() unable to create file "/projects/ECEP/LOCA_MACA_Ensembles/MACA/MACA_CHEYENNE/historical/tasmin/CHEYENNE_LOCA_tasmin_BNU-ESM_r1i1p1_historical.nc.pid52095.ncrcat.tmp"
+nco_err_exit(): ERROR NCO will now exit with system call exit(EXIT_FAILURE)
+nco_err_exit(): ERROR Short NCO-generated message (usually name of function that triggered error): nco__create()
+nco_err_exit(): ERROR Error code is 13. Translation into English with nc_strerror(13) is "Permission denied"
+ERROR: nco__create() unable to create file "/projects/ECEP/LOCA_MACA_Ensembles/MACA/MACA_CHEYENNE/historical/huss/CHEYENNE_LOCA_huss_BNU-ESM_r1i1p1_historical.nc.pid52097.ncrcat.tmp"
+nco_err_exit(): ERROR NCO will now exit with system call exit(EXIT_FAILURE)
