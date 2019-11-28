@@ -21,24 +21,40 @@ then
   rm -frv deleteme.nc
   echo Working on ${HOST_NAME} using ${OS_NAME}
 
-   declare -a    PARAM=(  "pr"         "tasmin" "tasmax" )
+      # setting the available variables
+
+      declare -a    PARAM=(  "pr"
+                             "tasmax"
+                             "tasmin"
+                             "huss"
+                             "rhsmax"
+                             "rhsmin"
+                             "rsds"
+                             "uas"
+                             "vas"
+                             )
+
+
    declare -a SCENARIO=(  "historical" "rcp85"  "rcp45"  )
 
 
    ### NCL COMMANDS TO FETCH GRIDCELLS BY LAT/LON
    #
-   #    max_lat =  49.39602279663086; degrees north
-   #    min_lat =  34.00 ; degrees north
-   #    min_lon = -114.25  ; degrees east
-   #    max_lon =  -86.25 ; degrees east
-
+   #    min_lat =   42.00; degrees north
+   #    max_lat =   45.80; degrees north
+   #    min_lon = -106.50 ; degrees east
+   #    max_lon = -101.00 ; degrees east
+   #
+   #   print(  lon( {min_lon:max_lon}  )   )
+   #   print(  lat( {min_lat:max_lat}  )   )#
+   #
    #   deg_target = lon({max_lon})
    #   index_xx = ind(lon .eq. lon({max_lon}))
    #   index_xn = ind(lon .eq. lon({min_lon}))
    #   index_yx = ind(lat .eq. lat({max_lat}))
    #   index_yn = ind(lat .eq. lat({min_lat}))
-   #   print("LONCLIP=  [" +  (index_xn) + ":1:" + (index_xx) + "] [" +  (lon(index_xn)) + ":1:" + (lon(index_xx)) + "]")
-   #    print("LATCLIP=  [" +  (index_yn) + ":1:" + (index_yx) + "] [" +  lat(index_yn) + ":1:" + lat(index_yx) + "]")
+   #   print("export LONCLIP=  [" +  (index_xn) + ":1:" + (index_xx) + "] # [" +  (lon(index_xn)) + ":1:" + (lon(index_xx)) + "]")
+   #   print("export LATCLIP=  [" +  (index_yn) + ":1:" + (index_yx) + "] # [" +  lat(index_yn) + ":1:" + lat(index_yx) + "]")
    #
    #
    ##################
@@ -123,20 +139,6 @@ then
                             'MIROC-ESM-CHEM_r1i1p1'
                             'MIROC5_r1i1p1'
                             'MRI-CGCM3_r1i1p1')
-
-      # setting the available variables
-
-      declare -a    PARAM=(
-                             "pr"
-                             "tasmax"
-                             "tasmin"
-                             "huss"
-                             "rhsmax"
-                             "rhsmin"
-                             "rsds"
-                             "uas"
-                             "vas"
-                             )
 
 
    # setting the available variables
@@ -645,7 +647,7 @@ then
                echo Processing ${PAR}_${ENS}_${SCEN}
                echo
 
-######               for TIND in "${TIND_VALS[@]}"
+               ######               for TIND in "${TIND_VALS[@]}"
 
                for TIND in "${TIND_VALS[@]}"
                do
@@ -669,8 +671,8 @@ then
 
                      echo  Downloading File from USGS THREDDS Server
                      echo
-                     echo  nohup nccopy -7 -d 8 ${ORIGINAL_URL}?${ALWAYS_GET_US},${PAR}_${ENS}_${SCEN}${TYX_COORDS} ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]} >& ./nccopy.log
-                           nohup nccopy -7 -d 8 ${ORIGINAL_URL}?${ALWAYS_GET_US},${PAR}_${ENS}_${SCEN}${TYX_COORDS} ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]} >& ./nccopy.log
+                     echo        /usr/local/bin/nccopy -7 -d 8 ${ORIGINAL_URL}?${ALWAYS_GET_US},${PAR}_${ENS}_${SCEN}${TYX_COORDS} ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}
+                           nohup /usr/local/bin/nccopy -7 -d 8 ${ORIGINAL_URL}?${ALWAYS_GET_US},${PAR}_${ENS}_${SCEN}${TYX_COORDS} ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]} >& ./nccopy.log
 
                      if (  grep -iFq "CURL" ./nccopy.log )
                      then
@@ -695,7 +697,7 @@ then
                         echo
                         echo Converting Time to the Record Variable
                         echo
-                        echo nohup ncks -h --mk_rec_dmn time  ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]} ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc
+                        echo       ncks -h --mk_rec_dmn time  ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]} ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc
                              nohup ncks -h --mk_rec_dmn time  ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]} ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc
                                    rm -frv                    ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}
 
@@ -708,17 +710,17 @@ then
                         echo
                         echo Unpack File -- it will be uniformly packed later for all variables
                         echo
-                        echo  nohup ncpdq -h -U   ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc              temp_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc
+                        echo        ncpdq -h -U   ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc              temp_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc
                               nohup ncpdq -h -U   ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc              temp_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc
                               mv -fv                           temp_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc
 
                         echo
                         echo Destroy any previous unpacking unformation
                         echo
-                        echo  nohup ncatted -h -O -a add_offset,,d,,   ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc              temp_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc
+                        echo        ncatted -h -O -a add_offset,,d,,   ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc              temp_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc
                               nohup ncatted -h -O -a add_offset,,d,,   ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc              temp_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc
                               mv -fv                                                temp_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc
-                        echo  nohup ncatted -h -O -a scale_factor,,d,, ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc              temp_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc
+                        echo        ncatted -h -O -a scale_factor,,d,, ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc              temp_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc
                               nohup ncatted -h -O -a scale_factor,,d,, ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc              temp_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc
                               mv -fv                                                temp_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc
 
@@ -763,25 +765,49 @@ then
                         echo
                         echo Preparing Compression for ${PAR}_${ENS}_${SCEN}
                         echo
-                           ncrename -h -v ${VARNAME},temporary ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc
+
+                           if [ "${PAR}" ==  "huss" ];
+                           then
+                              ncrename -h -v ${VARNAME},temporary ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc
 
 
-                           echo ncap2 --history --deflate 8 --script 'temporary=short(round(temporary*10))' ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}_short.nc
-                                ncap2 --history --deflate 8 --script 'temporary=short(round(temporary*10))' ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}_short.nc
-                           mv -v ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}_short.nc ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc
-                           echo
-                           echo ncap2 --history --deflate 8 --script 'where(temporary < 0) temporary=short(-32767)' ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}_fill.nc
-                                ncap2 --history --deflate 8 --script 'where(temporary < 0) temporary=short(-32767)' ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}_fill.nc
-                           mv -v ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}_fill.nc ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc
-                           echo
-                           echo ncrename -h -v temporary,${VARNAME} ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc
-                                ncrename -h -v temporary,${VARNAME} ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc
-                           echo
-                           echo ncatted -h -O -a add_offset,${VARNAME},c,f,0     ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc
-                                ncatted -h -O -a add_offset,${VARNAME},c,f,0     ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc
-                           echo ncatted -h -O -a scale_factor,${VARNAME},c,f,0.1 ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc
-                                ncatted -h -O -a scale_factor,${VARNAME},c,f,0.1 ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc
-                           echo
+                              echo ncap2 --history --deflate 8 --script 'temporary=short(round(temporary*100000.))' ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}_short.nc
+                                   ncap2 --history --deflate 8 --script 'temporary=short(round(temporary*100000.))' ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}_short.nc
+                              mv -v ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}_short.nc ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc
+                              echo
+                              echo ncap2 --history --deflate 8 --script 'where(temporary == -9999) temporary=short(-32767)' ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}_fill.nc
+                                   ncap2 --history --deflate 8 --script 'where(temporary == -9999) temporary=short(-32767)' ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}_fill.nc
+                              mv -v ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}_fill.nc ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc
+                              echo
+                              echo ncrename -h -v temporary,${VARNAME} ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc
+                                   ncrename -h -v temporary,${VARNAME} ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc
+                              echo
+                              echo ncatted -h -O -a add_offset,${VARNAME},c,f,0     ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc
+                                   ncatted -h -O -a add_offset,${VARNAME},c,f,0     ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc
+                              echo ncatted -h -O -a scale_factor,${VARNAME},c,f,0.00001 ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc
+                                   ncatted -h -O -a scale_factor,${VARNAME},c,f,0.00001 ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc
+                              echo
+                           else
+                              ncrename -h -v ${VARNAME},temporary ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc
+
+
+                              echo ncap2 --history --deflate 8 --script 'temporary=short(round(temporary*10))' ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}_short.nc
+                                   ncap2 --history --deflate 8 --script 'temporary=short(round(temporary*10))' ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}_short.nc
+                              mv -v ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}_short.nc ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc
+                              echo
+                              echo ncap2 --history --deflate 8 --script 'where(temporary == -9999) temporary=short(-32767)' ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}_fill.nc
+                                   ncap2 --history --deflate 8 --script 'where(temporary == -9999) temporary=short(-32767)' ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}_fill.nc
+                              mv -v ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}_fill.nc ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc
+                              echo
+                              echo ncrename -h -v temporary,${VARNAME} ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc
+                                   ncrename -h -v temporary,${VARNAME} ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc
+                              echo
+                              echo ncatted -h -O -a add_offset,${VARNAME},c,f,0     ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc
+                                   ncatted -h -O -a add_offset,${VARNAME},c,f,0     ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc
+                              echo ncatted -h -O -a scale_factor,${VARNAME},c,f,0.1 ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc
+                                   ncatted -h -O -a scale_factor,${VARNAME},c,f,0.1 ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc
+                              echo
+                           fi
 
 
                            if [ "${PAR}" ==  "pr" ];
@@ -792,6 +818,7 @@ then
                               ncatted -h -O -a standard_name,${VARNAME},c,c,"precipitation_amount"    ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc
                               ncatted -h -O -a units,${VARNAME},c,c,"kg m-1"    ${CLIPPED_PREFIX}_${PAR}_${ENS}_${SCEN}_${TIMECLIPCODE[$TIND]}.nc
                             fi
+
 
 
                            # Get rid of the mess in the global Attributes
